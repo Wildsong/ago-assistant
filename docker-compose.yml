@@ -1,0 +1,25 @@
+version: '3.6'
+services:
+
+# See the README (or Makefile) for the image build instructions.
+
+  ago-assistant:
+    container_name: ago-assistant
+    image: wildsong/ago-assistant
+    env_file: .env
+    environment:
+      PORTAL_URL: ${PORTAL_URL}
+      APP_ID: ${APP_ID}
+#      VIRTUAL_HOST: ${AGOA_VIRTUAL_HOST}
+#      VIRTUAL_PORT: 80
+#      NETWORK_ACCESS: internal
+#      LETSENCRYPT_HOST: ${AGOA_VIRTUAL_HOST}
+#      LETSENCRYPT_MAIL: ${MY_EMAIL}
+    ports:
+      - 80:80
+
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+
