@@ -5,11 +5,4 @@
 .gitignore
 LICENSE
 README.md
-
-# This will be a volume
-#widgets
-
-
-# Avoid copying these into the image since they will be in the volume
-#WebAppBuilderForArcGIS/client/stemapp/widgets/
-
+.env
