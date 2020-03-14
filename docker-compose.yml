@@ -11,7 +11,7 @@ services:
       PORTAL_URL: ${PORTAL_URL}
       APP_ID: ${APP_ID}
       VIRTUAL_HOST: ${AGOA_VIRTUAL_HOST}
-      VIRTUAL_PORT: 80
+      VIRTUAL_PORT: 8080
       NETWORK_ACCESS: internal
       LETSENCRYPT_HOST: ${AGOA_VIRTUAL_HOST}
       LETSENCRYPT_MAIL: ${MY_EMAIL}
@@ -20,7 +20,7 @@ services:
         aliases:
           - agoa
     expose:
-      - "80"
+      - "8080"
     restart: unless-stopped
     build:
       context: .

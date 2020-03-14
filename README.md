@@ -24,8 +24,10 @@ and the proxy will create Let's Encrypt certificates. To get that to work,
 docker-compose up -d
 ```
 
-Runs on port 80 by default, you can change the in docker-compose.yml
+Runs on port 8080 by default, you can change the in docker-compose.yml
 
+## Notes on AGO-assistant
 
+It's a JavaScript app and it just needs any web server.
 
-
+It's outdated. I say that because it uses jquery. :-)

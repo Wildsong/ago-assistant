@@ -1,16 +1,15 @@
-FROM nginx:latest
+FROM node:12
 MAINTAINER Brian H Wilson "brian@wildsong.biz"
 
-ENV AGOA_RELEASE="2.9.1"
+WORKDIR /home/node
 
-RUN apt-get update && apt-get install -y unzip
+# Download the code
+RUN git clone https://github.com/Esri/ago-assistant.git
 
-WORKDIR /usr/share/nginx/html
-RUN rm -rf *
+WORKDIR /home/node/ago-assistant
+RUN npm install
+RUN npm run build
 
-# Download the pre-built app
-ADD https://github.com/Esri/ago-assistant/releases/download/v${AGOA_RELEASE}/ago-assistant-${AGOA_RELEASE}.zip .
+EXPOSE 8080/tcp
 
-RUN unzip ago-assistant-${AGOA_RELEASE}.zip
-
-EXPOSE 80/tcp
+CMD npm run serve
