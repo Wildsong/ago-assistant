@@ -10,16 +10,24 @@ services:
     environment:
       PORTAL_URL: ${PORTAL_URL}
       APP_ID: ${APP_ID}
-#      VIRTUAL_HOST: ${AGOA_VIRTUAL_HOST}
-#      VIRTUAL_PORT: 80
-#      NETWORK_ACCESS: internal
-#      LETSENCRYPT_HOST: ${AGOA_VIRTUAL_HOST}
-#      LETSENCRYPT_MAIL: ${MY_EMAIL}
-    ports:
-      - 80:80
-
+      VIRTUAL_HOST: ${AGOA_VIRTUAL_HOST}
+      VIRTUAL_PORT: 80
+      NETWORK_ACCESS: internal
+      LETSENCRYPT_HOST: ${AGOA_VIRTUAL_HOST}
+      LETSENCRYPT_MAIL: ${MY_EMAIL}
+    networks:
+      proxy_net:
+        aliases:
+          - agoa
+    expose:
+      - "80"
     restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
 
+
+networks:
+  # Any services that want to be proxied need to use this network
+  proxy_net:
+    external: true
