@@ -4,7 +4,6 @@ services:
 # See the README (or Makefile) for the image build instructions.
 
   ago-assistant:
-    container_name: ago-assistant
     image: wildsong/ago-assistant
     env_file: .env
     environment:
@@ -16,9 +15,9 @@ services:
 #      LETSENCRYPT_HOST: ${AGOA_VIRTUAL_HOST}
 #      LETSENCRYPT_MAIL: ${MY_EMAIL}
     ports:
-      - 80:80
+    # mapproxy is hogging port 80
+      - "88:80"
 
-    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
